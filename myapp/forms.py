@@ -1,7 +1,5 @@
-from django.forms import ModelForm
-from .models import DownVote
+from django import forms
 
-class DownVoteForm(ModelForm):
-    class Meta:
-        model = DownVote
-        fields = ['post_id', 'user_profile',]
+
+class DownVoteForm(forms.Form):
+    url = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Enter URL here.'}), label='url')
