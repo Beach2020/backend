@@ -60,3 +60,21 @@ def downvote_ext(request):
         json.dumps({'total_downvote': len(vote_list), 'msg': 'Update Success.'}),
         content_type="application/json"
     )
+
+def d(request, pid, uid):
+    all_data = DownVote.objects.filter(post_id=pid, profile_id=uid)
+    if len(all_data) >0: 
+        vote= DownVote.objects.get(post_id=pid, profile_id=uid)
+        vote.delete()
+    else: 
+        new_data = DownVote(post_id=postId, user_profile=userId)
+        new_data.save()
+        
+    all_data = DownVote.objects.filter(post_id=pid)
+    
+    
+    return HttpResponse(
+        json.dumps({'total_downvote': len(all_data), 'msg': 'Update Success.'}),
+        content_type="application/json"
+    )
+        
