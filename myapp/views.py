@@ -98,7 +98,7 @@ def d(request, pid, uid):
 
 def s(request, pid, uid):
     try:
-        adownvote = DownVote.objects.get(post_id=pid, user_profile=uid)
+        adownvote = DownVote.objects.get(post_id=pid)
         this_user_downvoted = "yes"
     except DownVote.DoesNotExist:
         this_user_downvoted = "no"
